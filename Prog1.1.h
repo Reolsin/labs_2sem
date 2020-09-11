@@ -15,8 +15,6 @@ namespace Prog1 {
 		return 1;
 	}
 
-	line* input_lines_v1(int& m, int& n);
-	line* input_lines_v2(int& m, int& n);
 	line* input_lines_v3(int& m, int& n);
 	void output(line*, int m, int n);
 	line* erase(line*, int m);
