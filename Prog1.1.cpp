@@ -47,15 +47,19 @@ namespace Prog1 {
 
 		do {
 			std::cout << "Enter line for values (inter index < 0 or >= " << m << " to end input): -->" << std::endl;
-			if (getNum(i) < 0)
-				return nullptr;
+			if (getNum(i) < 0) {
+				delete[] buf;
+				return erase(str, m);
+			}
 			if ((i >= 0) && (i < m)) {
 				k = 0;
 		
 				do {
 					std::cout << "Enter column for values (inter index < 0 or >= " << n << " to end input): -->" << std::endl;
-					if (getNum(j) < 0)
-						return nullptr;
+					if (getNum(j) < 0) {
+						delete[] buf;
+						return erase(str, m);
+					}
 					if ((j >= 0) && (j < n)) {
 						std::cout << "Enter value (" << i << "," << j <<"): -->" << std::endl;
 						if (getNum(buf[2 * j]) < 0) {
@@ -68,7 +72,7 @@ namespace Prog1 {
 						}
 					}
 
-				} while (j >= 0);
+				} while ((j >= 0) && (j < n));
 
 				try {
 					if (k) {
@@ -81,6 +85,7 @@ namespace Prog1 {
 				}
 				catch (std::bad_alloc& ba) {
 					std::cout << "------ Allocation Error #2: " << ba.what() << std::endl;
+					delete[] buf;
 					return erase(str, i);
 				}
 
@@ -92,7 +97,7 @@ namespace Prog1 {
 						c++;
 					}
 			}
-		} while (i >= 0);
+		} while ((i >= 0) && (i < n));
 		
 		delete[] buf;
 
